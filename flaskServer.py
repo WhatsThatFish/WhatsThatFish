@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, render_template, redirect, url_for, request
 import hashlib
 import pymongo
 from pymongo import MongoClient
@@ -7,13 +7,14 @@ import ssl
 
 app = Flask(__name__)
 
-mongo_client = MongoClient("mongodb+srv://cit270:password123@db.sbotv.mongodb.net/db?retryWrites=true&w=majority")
-db = mongo_client.accounts
-users = db.users
+#Mongo Integration
+#mongo_client = MongoClient("mongodb+srv://cit270:password123@db.sbotv.mongodb.net/db?retryWrites=true&w=majority")
+#db = mongo_client.accounts
+#users = db.users
 
 @app.route('/', methods=['GET'])
 def index():
-    return "Hello!\n"
+    return render_template('login.html')
 
 @app.route('/login', methods=['POST'])
 def login():
