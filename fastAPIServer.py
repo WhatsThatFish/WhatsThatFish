@@ -49,16 +49,18 @@ def register(body):
     password = data['password']
     vpassword = data['verifyPassword']
 
-    # Compare the password with the verify password to determine whether to make the connection
+    # Compare the password with the verify password to determine whether to push the user
     if password == vpassword:
         password = hashlib.sha256(password.encode('utf-8')).hexdigest()
 
         user = {
             'name': data['userName'],
             'email': data['email'],
-            'password': password,
-            'accountType': data['accountType'],
+            'password': data['password'],
         }
+
+        password = ''
+        vpassword = ''
 
         try:
             table.put_item(Item=user)
