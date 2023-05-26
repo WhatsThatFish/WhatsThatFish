@@ -1,8 +1,10 @@
+import json
+import uuid
 import hashlib
 import boto3
 
 # AWS Integration
-dynamodb = boto3.resource('dynamodb')
+dynamodb = boto3.client('dynamodb')
 table = dynamodb.Table('wtf_login')
 
 def lambda_handler(event, context):
@@ -28,7 +30,7 @@ def index():
 def login(body):
     data = json.loads(body)
     username = data['userName']
-    password = hashlib.sha256(data['password'].encode('utf-8')).hexdigest()
+    password = hashlib.sha512(data['password'].encode('utf-8')).hexdigest()
 
     response = table.get_item(Key={'name': username})
     user = response.get('Item')
@@ -51,7 +53,7 @@ def register(body):
 
     # Compare the password with the verify password to determine whether to push the user
     if password == vpassword:
-        password = hashlib.sha256(password.encode('utf-8')).hexdigest()
+        password = hashlib.sha512(password.encode('utf-8')).hexdigest()
 
         user = {
             'name': data['userName'],
