@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* header and nav styling */
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    background: #D2E3FC;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 10%;
+    background: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo {
+    position: relative;
+    font-size: 25px;
+    color: antiquewhite;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.logo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    animation: showRight 1s ease forwards;
+    animation-delay: .4s;
+}
+
+.navbar a {
+    font-size: 18px;
+    color: antiquewhite;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 35px;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: #FFC145;
+
+}
+
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 10%;
+    background: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.navbar a {
+    font-size: 18px;
+    color: antiquewhite;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 35px;
+}
+
+/* home.html styling */
+
+.hometab {
+    margin-top: 200px;
+    align-items: center;
+    padding: 0 10%;
+}
+
+.intro-box {
+    margin: 100px auto;
+    max-width: 600px;
+    margin-bottom: 300px;
+}
+
+.intro-box h1 {
+    font-size: 56px;
+    font-weight: 700;
+}
+
+.intro-box h3 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #FFC145;
+    margin-top: 20px;
+}
+
+.intro-box p {
+    margin-top: 20px;
+    font-size: 20px;
+    line-height: 2em;
+    font-weight: 500;
+    text-align: center; 
+}
+
+.bttn-box {
+    margin: 200px auto;
+    display: grid;
+}
+
+.bttn-box h1 {
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.bttn-box p {
+    font-size: 20px;
+    line-height: 2em;
+    max-width: 500px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.bttn-box a {
+    position: relative;
+    display: inline-flex;
+    width: 150px;
+    height: 100%;
+    /*background: #B7FDFE;---adds color just 1*/
+    border: 2px solid #B7FDFE;
+    border-radius: 8px;
+    font-size: 19px;
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    margin: 0 20px;
+}
+
+.bttn-box div {
+    margin-top: 100px;
+    text-align: center;
+}
+
+.bttn-box a:nth-child(2) {
+    background: transparent;
+    /*color: #B7FDFE; ---- changes the bttn letters*/
+}
+
+.bttn-box a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    /*chnages background of bttns*/background: #E2EFDE;
+    z-index: -1;
+    transition: .2s;
+}
+
+.bttn-box a:hover::before {
+    width: 100%;
+}
+
+.fish-catalog, .inventory-explanation {
+    margin-top: 200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 300px;
+}
+
+.fish-catalog h1, .inventory-explanation h1 {
+    margin: 20px auto;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.fish-catalog p, .inventory-explanation p {
+    line-height: 2em;
+    max-width: 500px;
+    font-size: 20px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.inventory-explanation p {
+    max-width: 700px;
+}
+
+.media-logo {
+    bottom: 40px;
+    width: 170px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.media-logo a {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid #B7FDFE;
+    border-radius: 50%;
+    font-size: 20px;
+    color: #B7FDFE;
+    text-decoration: none;
+    z-index: 1;
+    overflow: hidden;
+    transition: 0.2s;
+}
+
+.media-logo a:hover {
+    color: #081B29;
+}
+
+.media-logo a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #E2EFDE;
+    z-index: -1;
+    transition: 0.2s;
+}
+
+.media-logo a:hover:before {
+    width: 100%;
+}
+
+/*KEYFRAMES ANIMATION*/
+@keyframes showRight {
+    100% {
+        width: 0;
+    }
+}
