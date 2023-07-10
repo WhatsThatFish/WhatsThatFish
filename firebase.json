@@ -33,7 +33,7 @@
     "singleProjectMode": true
   },
   "hosting": {
-    "public": "pants",
+    "public": ".",
     "ignore": [
       "firebase.json",
       "**/.*",
