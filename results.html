@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+</head>
+
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">WHAT'S THAT FISH</a>
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="login.html">LOGIN</a>
+            <a href="signup.html">SIGNUP</a>
+            <a href="upload.html">UPLOAD PICTURE</a>
+            <a href="faq.html" class="active">FAQS</a>
+        </nav>
+    </header>
+    <h1>Results Page</h1>
+
+    <!-- Assume the fish name is retrieved from the API -->
+    <!-- Change the value of the fishName variable based on your implementation -->
+    <script>
+        var fishName = "rainbow"; // Example: rainbow, brown, brook, tiger, cutthroat
+
+        // Function to redirect back to the upload page with the fishName as a query parameter
+        function uploadAgain() {
+            var url = "upload.html?fish=" + encodeURIComponent(fishName);
+            window.location.href = url;
+        }
+    </script>
+
+    <button onclick="uploadAgain()">Upload Again</button>
+</body>
+
+</html>

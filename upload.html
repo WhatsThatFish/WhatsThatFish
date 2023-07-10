@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHAT'S THAT FISH</title>
+    <link rel="stylesheet" href="styles/upload.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">WHAT'S THAT FISH</a>
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="login.html">LOGIN</a>
+            <a href="signup.html">SINGUP</a>
+            <a href="upload.html" class="active">UPLOAD PICTURE</a>
+            <a href="faq.html">FAQS</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <figure class="image-container">
+            <img id="chosen-image">
+            <figcaption id="file-name"></figcaption>
+        </figure>
+
+        <input type="file" id="file" accept="image/*">
+        <label for="file">
+            <i class='bx bx-upload'></i> &nbsp;
+            Upload A Picture
+        </label>
+    </div>
+
+    <!-- Firebase JavaScript SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-storage.js"></script>
+
+    <!-- Initialize Firebase -->
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyB67h1XTcKBVOqaX8JxiPYtqOWZtyqGszY",
+            authDomain: "what-s-that-fish.firebaseapp.com",
+            projectId: "what-s-that-fish",
+            storageBucket: "what-s-that-fish.appspot.com",
+            messagingSenderId: "983986352226",
+            appId: "1:983986352226:web:50b29f417d42ba63a8613b",
+            measurementId: "G-9XZHE4V8ND"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Get file input element
+        var fileInput = document.getElementById('file');
+
+        // Add event listener for file selection
+        fileInput.addEventListener('change', function (event) {
+            var file = event.target.files[0];
+
+            // Create a storage reference
+            var storageRef = firebase.storage().ref();
+
+            // Upload the file to Firebase Storage
+            var uploadTask = storageRef.child('images/' + file.name).put(file);
+
+            // Register three observers:
+            // 1. 'state_changed' observer, called any time the state changes
+            // 2. Error observer, called on failure
+            // 3. Completion observer, called on successful completion
+            uploadTask.on('state_changed',
+                function (snapshot) {
+                    // Observe state change events such as progress, pause, and resume
+                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                    switch (snapshot.state) {
+                        case firebase.storage.TaskState.PAUSED: // or 'paused'
+                            console.log('Upload is paused');
+                            break;
+                        case firebase.storage.TaskState.RUNNING: // or 'running'
+                            console.log('Upload is running');
+                            break;
+                    }
+                },
+                function (error) {
+                    // Handle unsuccessful uploads
+                    console.error(error);
+                },
+                function () {
+                    // Handle successful uploads on complete
+                    uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                        console.log('File available at', downloadURL);
+                        // Perform any further actions with the download URL
+                        // For example, you can display the image or save the download URL to a database
+
+                        // Call the Firebase Cloud Function passing the download URL
+                        callMLModelFunction(downloadURL);
+                    });
+                }
+            );
+        });
+
+        // Function to call the Firebase Cloud Function with the download URL
+        function callMLModelFunction(downloadURL) {
+            // Replace "YOUR_CLOUD_FUNCTION_NAME" with the actual name of your Firebase Cloud Function
+            var functionUrl = 'https://us-central1-what-s-that-fish.cloudfunctions.net/on_request_fish';
+
+            // Make a POST request to the Firebase Cloud Function
+            fetch(functionUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    imageUrl: downloadURL
+                })
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    console.log('Machine learning model executed successfully.');
+                    // Handle the response or redirect to a results page
+                } else {
+                    console.error('Failed to execute machine learning model.');
+                }
+            })
+            .catch(function(error) {
+                console.error('An error occurred while calling the machine learning model:', error);
+            });
+        }
+    </script>
+</body>
+
+</html>
+
+

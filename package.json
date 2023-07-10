@@ -1,24 +1,9 @@
 {
-  "name": "final",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "body": "^5.1.0",
-    "express": "^4.17.3",
-    "mongo": "^0.1.0",
-    "mongodb": "^4.4.1",
-    "node": "^17.7.1",
-    "parser": "^0.1.4",
-    "crypto": "^1.0.1",
-    "fs": "^0.0.1-security",
-    "https": "^1.0.0",
-    "node.js": "^0.0.1-security",
-    "uuid": "^8.3.2"
+  "devDependencies": {
+    "rollup": "^3.26.2",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "webpack": "^5.88.1",
+    "webpack-cli": "^5.1.4"
   }
 }

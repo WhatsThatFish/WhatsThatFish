@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="styles/faq.css">
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">WHAT'S THAT FISH</a>
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="login.html">LOGIN</a>
+            <a href="signup.html">SIGNUP</a>
+            <a href="upload.html">UPLOAD PICTURE</a>
+            <a href="faq.html" class="active">FAQS</a>
+        </nav>
+    </header>
+    <h1>Frequently Asked Questions</h1>
+    <div id="question-box">    
+    <button class="accordion">Question 1?</button>
+    <div class="panel">
+        <p>Answer 1.</p>
+    </div>
+    
+    <button class="accordion">Question 2?</button>
+    <div class="panel">
+        <p>Answer 2.</p>
+    </div>
+    
+    <button class="accordion">Question 3?</button>
+    <div class="panel">
+        <p>Answer 3.</p>
+    </div>
+    </div>
+    <script>
+        var accordions = document.getElementsByClassName("accordion");
+        var i;
+        
+        for (i = 0; i < accordions.length; i++) {
+            accordions[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
