@@ -9,10 +9,7 @@
 
 /* Global styles */
 body {
-    display: flex;
     background: #D2E3FC;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
     font-family: 'Poppins', sans-serif;
 }
@@ -72,13 +69,19 @@ body {
 }
 
 #title {
-    margin-top: -700px;
+    margin-top: 150px;
     font-size: 50px;
+    text-align: center;
 }
 
-/* Center container */
+#result {
+    margin-top: 80px;
+    text-align: center;
+}
+
 #container {
     text-align: center;
+    margin-top: 150px;
 }
 
 /* Button styles */
@@ -89,6 +92,9 @@ button {
     border-radius: 8px;
     padding: 12px 24px;
     font-size: 16px;
+    text-align: center;
+    font-weight: bolder;
+
 }
 
 button:hover {
