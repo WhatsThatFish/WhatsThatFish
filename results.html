@@ -25,20 +25,31 @@
     <h2 id="result"></h2>
 
     <div id="container">
-    <button onclick="uploadAgain()">Upload Again</button>
+        <button onclick="uploadAgain()">Upload Again</button>
     </div>
     
     <!-- Assume the fish name is retrieved from the API -->
     <!-- Change the value of the fishName variable based on your implementation -->
     <script>
-        var fishName = "rainbow"; // Example: rainbow, brown, brook, tiger, cutthroat
+        // Function to get the value of a URL query parameter
+        function getQueryParameter(name) {
+            var urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
 
-        // Function to redirect back to the upload page with the fishName as a query parameter
+        // Get the fish name from the URL query parameter
+        var fishName = getQueryParameter('fish');
+
+        // Display the fish name in the results page
+        var resultElement = document.getElementById('result');
+        resultElement.textContent = "You've Caught A " + fishName;
+
+        // Function to redirect back to the upload page
         function uploadAgain() {
-            var url = "upload.html?fish=" + encodeURIComponent(fishName);
-            window.location.href = url;
+            window.location.href = 'upload.html';
         }
     </script>
 </body>
 
 </html>
+
